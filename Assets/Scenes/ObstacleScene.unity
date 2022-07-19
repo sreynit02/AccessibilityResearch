@@ -150,7 +150,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 315827232}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -5.15, y: 0.19, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1007,7 +1007,6 @@ MonoBehaviour:
   - {fileID: 1430158224}
   - {fileID: 1692594995}
   viewAngle: 60
-  viewRange: 60
 --- !u!1 &1279811551 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100006, guid: b451a052397f03c4f8a04d915d1c0492, type: 3}
@@ -1350,7 +1349,6 @@ MonoBehaviour:
   - {fileID: 1430158224}
   - {fileID: 1692594995}
   viewAngle: 90
-  viewRange: 45
 --- !u!4 &1640182299
 Transform:
   m_ObjectHideFlags: 0
@@ -1618,7 +1616,6 @@ MonoBehaviour:
   - {fileID: 1430158224}
   - {fileID: 1692594995}
   viewAngle: 90
-  viewRange: 45
 --- !u!1001 &2110310688
 PrefabInstance:
   m_ObjectHideFlags: 0
