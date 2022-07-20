@@ -8,6 +8,7 @@ public class FovManager : MonoBehaviour
     public Transform[] target;
 
     public float viewAngle;
+    public AudioSource sound;
 
     void Update()
     {
@@ -45,22 +46,35 @@ public class FovManager : MonoBehaviour
             //   Debug.Log(obj.name);
             // }
 
+            //Cast a ray against collider
+            RaycastHit hit;
+            if (Physics.Raycast(transform.position, toTarget, out hit))
+              {
+              Debug.DrawRay(transform.position, toTarget, Color.green);
+              sound.Play();
+              Debug.Log("Did Hit");
+              }
+
             //project angle of target to XY plane
             Vector3 projectedVector = Vector3.ProjectOnPlane(toTarget, transform.forward);
             //calculate angle
             float xyAngle = Vector3.SignedAngle(projectedVector, transform.up, transform.forward);
+            Debug.Log(obj.name);
             print(xyAngle);
 
             if (xyAngle == 90)
             {
+              Debug.Log(obj.name);
               print("There's an object in front of you!");
             }
             else if(xyAngle == 0 )
             {
+              Debug.Log(obj.name);
               print("There's an object to your right!");
             }
             else if(xyAngle == 180)
             {
+              Debug.Log(obj.name);
               print("There's an object to your left!");
             }
           }else{
