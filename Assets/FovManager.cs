@@ -1,15 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class FovManager : MonoBehaviour
 {
+    // Vector3 projectedVector;
+    // Vector3 tempAngle;
     // public GameObject[] objects;
     public Transform[] target;
-
     public float viewAngle;
     public AudioSource sound;
-
     void Update()
     {
       CanSeeTarget(target, viewAngle);
@@ -19,69 +20,46 @@ public class FovManager : MonoBehaviour
     void CanSeeTarget(Transform[] target, float viewAngle) {
         foreach(Transform obj in target)
         {
+          float distance = Vector3.Distance(transform.position, obj.position);
           Vector3 toTarget = obj.position - transform.position;
           //checks if the angle btw the object and the target is within the given FOVAngle
+           
+
           if (Vector3.Angle(transform.forward, toTarget) <= viewAngle)
           {
-            //Debug.DrawRay(transform.position, toTarget, Color.green);
+            Debug.DrawRay(transform.position, toTarget, Color.green);
             //Debug.Log(obj.name);
-            obj.GetComponent<Outline>().enabled = true;
-            // float angle = Vector3.Angle(toTarget, transform.forward);
-            // if (angle<5.0f){
-            //     print("There's an obstacle in front");
-            //     //Debug.Log(obj.name);
-            // }
-            // else if(angle>5.0f)
-            // {
-            //   print("here");
-            //   Debug.Log(obj.name);
-            // }
-            // else if(angle>-5.0f){
-            //   print("angle????");
-            //   Debug.Log(obj.name);
-            // }
-            // else if(angle<-5.0f)
-            // {
-            //   print("hello!!!");
-            //   Debug.Log(obj.name);
-            // }
 
-            //Cast a ray against collider
+            obj.GetComponent<Outline>().enabled = true;
+
             RaycastHit hit;
-            if (Physics.Raycast(transform.position, toTarget, out hit))
+            if ((Physics.Raycast(transform.position, toTarget, out hit)))
               {
               Debug.DrawRay(transform.position, toTarget, Color.green);
-              sound.Play();
-              Debug.Log("Did Hit");
               }
-
-            //project angle of target to XY plane
-            Vector3 projectedVector = Vector3.ProjectOnPlane(toTarget, transform.forward);
             //calculate angle
-            float xyAngle = Vector3.SignedAngle(projectedVector, transform.up, transform.forward);
-            Debug.Log(obj.name);
-            print(xyAngle);
-
-            if (xyAngle == 90)
+            float xyAngle = Vector3.SignedAngle(toTarget, transform.forward , Vector3.up);            
+            // Debug.Log(obj.name + " at " + xyAngle + "deg");
+            
+            if ((-15 < xyAngle) && (xyAngle < 15))
             {
-              Debug.Log(obj.name);
-              print("There's an object in front of you!");
+              //Debug.Log(obj.name);
+              //Debug.Log("The " + obj.name + " detected at " + distance + " units from you!" + " viewAngle:" + viewAngle);
+              Debug.Log("The " + obj.name + " in front of you!");
             }
-            else if(xyAngle == 0 )
+            else if((15 < xyAngle) && (xyAngle < 90) )
             {
-              Debug.Log(obj.name);
-              print("There's an object to your right!");
+              //Debug.Log(obj.name);
+              Debug.Log("The " + obj.name + " to your left!");
             }
-            else if(xyAngle == 180)
+            else if((-15 > xyAngle) && (xyAngle > -90))
             {
-              Debug.Log(obj.name);
-              print("There's an object to your left!");
+              //Debug.Log(obj.name);
+              Debug.Log("The " + obj.name + " to your right!");
             }
           }else{
               obj.GetComponent<Outline>().enabled = false;
           }
         }
-       }
-
-
-}
+       } 
+    }
