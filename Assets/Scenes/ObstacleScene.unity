@@ -368,7 +368,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!135 &472008032
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1791,6 +1791,8 @@ MonoBehaviour:
   - {fileID: 1430158224}
   - {fileID: 504956399}
   - {fileID: 1279811554}
+  - {fileID: 472008035}
+  - {fileID: 1692594995}
   viewAngle: 60
   sound: {fileID: 76734249}
 --- !u!1001 &2110310688
@@ -1806,7 +1808,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 188006, guid: c6b7fb383a3534b039692b5485b6e739, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 481554, guid: c6b7fb383a3534b039692b5485b6e739, type: 3}
       propertyPath: m_RootOrder
